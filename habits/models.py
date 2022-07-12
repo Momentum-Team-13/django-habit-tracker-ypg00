@@ -17,8 +17,8 @@ class User(BaseModel):
 class Habit(BaseModel):
     name = models.CharField(max_length=255)
     goal = models.IntegerField(max_length=9, null=True, blank=True)
-    metric = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True)
+    unit = models.CharField(max_length=255, null=True, blank=True)
+    creator = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True)
 
 class Record(BaseModel):
     quantity = models.IntegerField(max_length=9, null=True, blank=True)

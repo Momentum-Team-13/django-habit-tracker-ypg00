@@ -11,17 +11,15 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import environ, os
+import environ
 
 env = environ.Env(
     DEBUG=(bool, False)
 )
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# # BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
 
@@ -46,7 +44,7 @@ INSTALLED_APPS = [
 
     # Third-Party
     'django_extensions',
-    'django_toolbar',
+    'debug_toolbar',
 
     # Project
     'habits',
@@ -91,17 +89,13 @@ WSGI_APPLICATION = 'habit_tracker.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': env.db(),
 
     # read os.environ['SQLITE_URL']
-    'extra': env.db_url(
-        'SQLITE_URL',
-        default='sqlite:////tmp/my-tmp-sqlite.db'
-    )
+    # 'extra': env.db_url(
+    #     'SQLITE_URL',
+    #     default='sqlite:////tmp/my-tmp-sqlite.db'
+    # )
 }
 
 
