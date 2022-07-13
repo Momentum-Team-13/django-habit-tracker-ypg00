@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import User, Habit, Record
 
-# Create your views here.
+def home(request):
+    return render(request, 'home.html')
+
+def register(request):
+    return render(request)
