@@ -25,3 +25,8 @@ class Record(BaseModel):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date = models.DateField(max_length=255, null=True, blank=True)
     habit = models.ForeignKey('Habit', on_delete=models.SET_NULL, null=True, blank=True)
+
+    class Meta:
+        constraint = [
+            UniqueConstraint(fields=['habit', 'date'], name='unique_habit_date')
+        ]
