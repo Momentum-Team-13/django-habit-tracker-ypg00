@@ -3,6 +3,6 @@ from django.contrib.auth.decorators import login_required
 from .models import User, Habit, Record
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'homepage.html')
 
 
