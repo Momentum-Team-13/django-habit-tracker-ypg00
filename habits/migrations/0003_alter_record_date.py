@@ -13,7 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='record',
             name='date',
-            field=models.DateField(default='', max_length=255),
-            preserve_default=False,
+            field=models.DateField(default='YYYY-MM-DD'),
         ),
     ]
