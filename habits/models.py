@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.constraints import UniqueConstraint
+from datetime import date
 
 class BaseModel(models.Model):
     created_at = models.DateTimeField(db_index=True, auto_now_add=True)
@@ -21,7 +22,7 @@ class Habit(BaseModel):
     creator = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True)
 
 class Record(BaseModel):
-    date = models.DateField(default='YYYY-MM-DD')
+    date = models.DateField(default=date.today)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     habit = models.ForeignKey('Habit', on_delete=models.SET_NULL, null=True, blank=True)
 
