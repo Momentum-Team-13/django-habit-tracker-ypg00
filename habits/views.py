@@ -5,5 +5,4 @@ from .models import User, Habit, Record
 def home(request):
     return render(request, 'home.html')
 
-def register(request):
-    return render(request)
+

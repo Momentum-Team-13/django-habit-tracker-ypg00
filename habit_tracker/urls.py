@@ -8,5 +8,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
     path('auth/', include('registration.backends.simple.urls')),
-    path('auth/register/', habits_views.home, name='register'),
 ]
