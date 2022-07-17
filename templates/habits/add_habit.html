@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Add A New Habit</h1>
+<div>
+    <form method="Post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+    <div><a href="{% url 'homepage' %}">Home</a></div>
+</div>
+
+
+{% endblock %}

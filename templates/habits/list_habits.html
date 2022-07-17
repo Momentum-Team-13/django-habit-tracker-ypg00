@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div>
+    {% if user.is_authenticated %}
+
+    <div>
+        <h3>Hello, {{ user.username }}!</h3> 
+        <button><a href="{% url 'add_habit' %}">Add Habit</a></button>
+        <button><a href={% url 'auth_logout' %}>Log Out</a></button>
+        <br>
+        <br>
+    </div>
+    <section>
+        {% if habits %}
+        {% for habit in habits %}
+            <div>{{ habit.name }} {{ habit.goal }} {{ habit.unit }}</div>
+        {% endfor %}
+        {% endif %}
+    </section>
+
+
+    {% endif %}
+</div>
+
+
+{% endblock %}
