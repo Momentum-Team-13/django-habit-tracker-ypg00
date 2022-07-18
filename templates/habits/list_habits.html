@@ -14,7 +14,10 @@
     <section>
         {% if habits %}
         {% for habit in habits %}
-            <div>{{ habit.name }} {{ habit.goal }} {{ habit.unit }}</div>
+            <div>
+                {{ habit.name }} {{ habit.goal }} {{ habit.unit }} 
+                <button><a href="{% url 'habit_detail' pk=habit.pk %}">Details</a></button>
+            </div>
         {% endfor %}
         {% endif %}
     </section>

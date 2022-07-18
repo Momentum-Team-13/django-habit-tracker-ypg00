@@ -28,3 +28,8 @@ def add_habit(request):
         form = HabitForm()
     return render(request, 'habits/add_habit.html', {'form': form})
 
+@login_required
+def habit_detail(request, pk):
+    habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
+    return render(request, 'habits/habit_detail.html', {'habit': habit})
+
