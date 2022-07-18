@@ -4,8 +4,20 @@
 <div>
     {% if user.is_authenticated %}
     <h2>{{ user.username }}'s Records</h2>
-    <h2>{{ habit.name }} {{ habit.goal }} {{ habit.unit }}</h2>
-    <h3>Records:</h3>
+    <h2>Habit: {{ habit.name }} {{ habit.goal }} {{ habit.unit }}</h2>
+    <button><a href="{% url 'add_record' pk=habit.pk %}">Add Record</a></button>
+    <button><a href="{% url 'list_habits' %}">Back</a></button>
+    
+        {% if records %}
+            <h3>Records:</h3>
+            {% for record in records %}
+                <div>
+                    {{ record.date }}: {{ habit.name }} {{ record.quantity }} {{ habit.unit }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
     {% endif %}
 </div>
 

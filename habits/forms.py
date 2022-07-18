@@ -9,3 +9,11 @@ class HabitForm(forms.ModelForm):
             'goal',
             'unit',
         ]
+
+class RecordForm(forms.ModelForm):
+    class Meta:
+        model = Record
+        fields = [
+            "date",
+            'quantity',
+        ]

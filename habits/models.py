@@ -34,4 +34,4 @@ class Record(BaseModel):
         ]
     
     def __str__(self):
-        return self.date
+        return f'{self.date}'

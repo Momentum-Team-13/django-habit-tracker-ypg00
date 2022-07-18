@@ -13,6 +13,8 @@ urlpatterns = [
     path('habits/', habits_views.list_habits, name='list_habits'),
     path('habits/<int:pk>/', habits_views.habit_detail, name='habit_detail'),
     path('habits/add/', habits_views.add_habit, name='add_habit'),
+    path('habits/<int:pk>/add', habits_views.add_record, name='add_record'),
+    
     # path('habits/delete/', habits_views.delete_habit, name='delete_habit'),
 
     # Records

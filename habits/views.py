@@ -1,7 +1,8 @@
+from cmath import log
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import User, Habit, Record
-from .forms import HabitForm
+from .forms import HabitForm, RecordForm
 
 def home(request):
     if request.user.is_authenticated:
@@ -31,5 +32,20 @@ def add_habit(request):
 @login_required
 def habit_detail(request, pk):
     habit = Habit.objects.filter(user=request.user.pk).get(pk=pk)
-    return render(request, 'habits/habit_detail.html', {'habit': habit})
+    records = Record.objects.filter(habit=habit.pk)
+    return render(request, 'habits/habit_detail.html', {'habit': habit, 'records': records})
+
+@login_required
+def add_record(request, pk):
+    habit_pk = Habit.objects.filter(user=request.user.pk).get(pk=pk)
+    if request.method == 'POST':
+        form = RecordForm(data=request.POST)
+        if form.is_valid():
+            record = form.save(commit=False)
+            record.habit = habit_pk
+            record.save()
+            return redirect('habit_detail', pk=pk)
+    else:
+        form = RecordForm()
+    return render(request, 'records/add_record.html', {'form': form})
 
