@@ -3,8 +3,8 @@
 
 <div>
     {% if user.is_authenticated == False %}
-    <h2>Please <a href="{% url 'auth_login' %}">login</a> to continue.</h2>
-    <h2>If you do not have a login, please <a href="{% url 'registration_register' %}">register here</a>.</h2>
+    <button type="submit"><a href="{% url 'auth_login' %}">Login</a></button>
+    <button type="submit"><a href="{% url 'registration_register' %}">Register</a></button>
     {% endif %}
 </div>
 
