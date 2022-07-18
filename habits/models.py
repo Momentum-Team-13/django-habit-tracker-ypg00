@@ -16,9 +16,9 @@ class User(AbstractUser):
 
 class Habit(BaseModel):
     name = models.CharField(max_length=255)
-    goal = models.IntegerField(default=0, null=True, blank=True)
-    unit = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey('User', on_delete=models.CASCADE, null=True, blank=True)
+    goal = models.IntegerField()
+    unit = models.CharField(max_length=255)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -26,7 +26,7 @@ class Habit(BaseModel):
 class Record(BaseModel):
     date = models.DateField(default=date.today)
     quantity = models.IntegerField(default=0, null=True, blank=True)
-    habit = models.ForeignKey('Habit', on_delete=models.CASCADE, null=True, blank=True)
+    habit = models.ForeignKey('Habit', on_delete=models.CASCADE)
 
     class Meta:
         constraints = [
